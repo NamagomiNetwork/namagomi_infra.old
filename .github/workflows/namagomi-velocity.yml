@@ -8,6 +8,7 @@ on:
 jobs:
   nanairo-velocity-build-and-push:
     runs-on: ubuntu-latest
+    env:
       IMAGE_NAME: namagomi-velocity
       TEAM: namagominetwork
 
