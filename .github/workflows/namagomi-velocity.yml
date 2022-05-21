@@ -3,7 +3,7 @@ on:
   push:
     paths:
     - 'docker/namagomi-velocity/docker-image/**'
-    - '.github/workflows/namagomi-velocity-push.yml'
+    - '.github/workflows/namagomi-velocity.yml'
 
 jobs:
   nanairo-velocity-build-and-push:
