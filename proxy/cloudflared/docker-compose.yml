@@ -1,0 +1,12 @@
+services:
+  cloudflared-access:
+    image: ghcr.io/namagominetwork/cloudflared-access-arm64:9639981
+    volumes:
+      - ./access-command.sh:/access-command.sh
+    tty: true
+    stdin_open: true
+    network_mode: "host"
+    restart: always
+    environment:
+      - CF_TOKEN_ID=TopSecret
+      - CF_TOKEN_SECRET=TopSecret

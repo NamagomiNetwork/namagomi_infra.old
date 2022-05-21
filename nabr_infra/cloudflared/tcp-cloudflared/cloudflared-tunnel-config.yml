@@ -1,0 +1,6 @@
+# tcp-cloudflared
+ingress:
+  # マイクラサーバー群
+  - hostname: lobby-tcp-cloudflared.nabr2730.com
+    service: "tcp://192.168.11.1:25565"
+  - service: http_status:404
