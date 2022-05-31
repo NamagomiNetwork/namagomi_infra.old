@@ -12,9 +12,6 @@ CLOUDFLARED_IP=${CLOUDFLARED_IP}
 SERVER_ICON=${SERVER_ICON}
 # ================
 
-# 別コンテナへはlocalhostでアクセスできないためhostsにローカルIPを書く
-# 扱いやすいようにVelocityのconfigにはローカルIPを基本的に書かない
-echo "${CLOUDFLARED_IP} velocity.namagomi.cfd.prod" | tee -a /etc/hosts
 
 # 各種ダウンロード
 wget ${VELOCITY_URL}
