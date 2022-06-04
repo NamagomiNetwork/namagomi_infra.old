@@ -1,12 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: bungeecord
+  name: bungeecord-lb
 spec:
-  ports:
-    - port: 7000
-      protocol: TCP
   selector:
     app: bungeecord
+  ports:
+  - name: bungeecord
+    port: 25565
+    protocol: TCP
+    targetPort: bungeecord
   type: LoadBalancer
   loadBalancerIP: 192.168.30.150
