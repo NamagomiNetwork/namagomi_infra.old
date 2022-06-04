@@ -21,7 +21,7 @@ spec:
           name: grafana
           resources: {}
           securityContext:
-            runAsUser: 472
+            runAsUser: 104
           volumeMounts:
             - mountPath: /var/lib/grafana
               name: grafana-storage
