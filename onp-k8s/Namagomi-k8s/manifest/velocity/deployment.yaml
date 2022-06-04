@@ -50,7 +50,7 @@ spec:
           command:
             - "sh"
             - "-c"
-            - 'wget -O /root/server-icon-download/TCPShield/config.toml https://raw.githubusercontent.com/NamagomiNetwork/namagomi_infra/main/onp-k8s/Namagomi-k8s/manifest/velocity/config/velocity.toml"'
+            - 'wget -O /root/server-icon-download/TCPShield/config.toml "https://raw.githubusercontent.com/NamagomiNetwork/namagomi_infra/main/onp-k8s/Namagomi-k8s/manifest/velocity/config/velocity.toml"'
 
       containers:
         - resources:
