@@ -4,10 +4,8 @@ metadata:
   labels:
     app: bungeecord
   name: bungeecord
-  annotations:
-    configmap.reloader.stakater.com/reload: "bungeecord-plugin-configs"
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 0
   selector:
     matchLabels:
