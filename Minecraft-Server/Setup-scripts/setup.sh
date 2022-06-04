@@ -5,7 +5,7 @@ echo "mc-serverユーザーが存在しない場合処理は失敗します。"
 echo "作成コマンド: adduser mc-server"
 echo "ユーザーmc-serverが存在し処理を続行しますか？: [Y/N]"
 
-read ANS
+read -r ANS
 
 case $ANS in
   [Yy]* )
@@ -20,10 +20,9 @@ case $ANS in
     echo "Javaのインストールが完了しました"
 
     sudo -u mc-server mkdir /home/mc-server/mc
-    sudo -u mc-server cd /home/mc-server/mc
-    sudo -u mc-server wget https://maven.minecraftforge.net/net/minecraftforge/forge/1.12.2-14.23.5.2860/forge-1.12.2-14.23.5.2860-installer.jar
-    sudo -u mc-server java -jar forge-1.12.2-14.23.5.2860-installer.jar --installServer
-    sudo -u mc-server /home/mc-server/mc/forge-1.12.2-14.23.5.2860.jar /home/mc-server/mc/server.jar 
+    sudo -u mc-server wget https://raw.githubusercontent.com/NamagomiNetwork/namagomi_infra/main/Minecraft-Server/Setup-scripts/forge.sh
+    sudo -u mc-server bash forge.sh
+    echo "done!"
     ;;
   * )
 
