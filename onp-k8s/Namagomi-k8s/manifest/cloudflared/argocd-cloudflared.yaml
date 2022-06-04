@@ -20,10 +20,10 @@ spec:
         - env:
             - name: TUNNEL_NAME
               value: argocd-namagomi
-            - name: CLOUDFLARED_SERVICE
-              value: argocd-namagomi
-            - name: https://argocd-server.argocd:443
+            - name: CLOUDFLARED_HOSTNAME
               value: namagomi-argocd.nabr2730.com
+            - name: CLOUDFLARED_SERVICE
+              value: https://argocd-server.argocd:443
           image: ghcr.io/giganticminecraft/cloudflared-with-auto-dns-route:sha-6455b98
           name: argocd-cloudflared
           resources: {}
