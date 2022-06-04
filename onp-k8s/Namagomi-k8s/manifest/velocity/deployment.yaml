@@ -40,7 +40,7 @@ spec:
           command:
             - "sh"
             - "-c"
-            - 'wget -O /root/root/server-config-download/server-icon.png "${SERVER_CONFIG_URL}"'
+            - 'wget -O /root/root/server-config-download/velocity.toml "${SERVER_CONFIG_URL}"'
 
         - name: plugin-config-download
           image: busybox:1.35.0
@@ -79,8 +79,8 @@ spec:
             periodSeconds: 20
           volumeMounts:
             - name: server-config-download-volume
-              mountPath: /config/config.toml
-              subPath: config.toml
+              mountPath: /config/velocity.toml
+              subPath: velocity.toml
 
             - name: server-icon-download-volume
               mountPath: /config/server-icon.png
