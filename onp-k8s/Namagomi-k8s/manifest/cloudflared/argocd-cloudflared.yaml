@@ -1,40 +1,37 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
-  name: argocd-cloudflared
   labels:
-    app: argocd-cloudflared
+    io.kompose.service: argocd-cloudflared
+  name: argocd-cloudflared
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: argocd-cloudflared
-  serviceName: "argocd-cloudflared"
-  replicas: 1
+      io.kompose.service: argocd-cloudflared
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
-        app: argocd-cloudflared
+        io.kompose.service: argocd-cloudflared
     spec:
       containers:
-      - image: ghcr.io/giganticminecraft/cloudflared-with-auto-dns-route:sha-c420cb5
-        name: argocd-cloudflared
-        env:
-        - name: CLOUDFLARED_HOSTNAME
-          value: namagomi-argocd.nabr2730.com
-        - name: CLOUDFLARED_SERVICE
-          value: https://argocd-server.argocd:443
-        - name: TUNNEL_NAME
-          value: argocd-namagomi
-        volumeMounts:
-        - name: argocd-cloudflared
-          mountPath: /root
-  volumeClaimTemplates:
-  - metadata:
-      name: argocd-cloudflared
-      labels:
-        "snapschedule/hourly": "enabled"
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 2Gi
+        - env:
+            - name: TUNNEL_NAME
+              value: argocd-namagomi
+            - name: CLOUDFLARED_SERVICE
+              value: argocd-namagomi
+            - name: https://argocd-server.argocd:443
+              value: namagomi-argocd.nabr2730.com
+          image: ghcr.io/giganticminecraft/cloudflared-with-auto-dns-route:sha-6455b98
+          name: argocd-cloudflared
+          resources: {}
+          volumeMounts:
+            - mountPath: /root
+              name: cloudflared-home
+      volumes:
+        - hostPath:
+            path: /root
+          name: cloudflared-home
+status: {}
