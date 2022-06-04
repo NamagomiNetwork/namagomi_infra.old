@@ -69,6 +69,10 @@ spec:
 
           image: itzg/bungeecord:java17-2022.1.0
           name: bungeecord
+          ports:
+          - name: bungee-port
+            containerPort: 7000
+            protocol: TCP
           volumeMounts:
             - name: server-config-download-volume
               mountPath: /config/velocity.toml

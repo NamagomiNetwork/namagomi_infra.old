@@ -6,9 +6,9 @@ spec:
   selector:
     app: bungeecord
   ports:
-  - name: bungeecord
+  - name: bungee-port
     port: 7000
     protocol: TCP
-    targetPort: bungeecord
+    targetPort: bungee-port
   type: LoadBalancer
   loadBalancerIP: 192.168.30.151
