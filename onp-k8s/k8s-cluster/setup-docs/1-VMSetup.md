@@ -20,6 +20,7 @@ IPアドレスの設定部分はmasterNodeの場合は下記のように設定�
 
 - IPアドレスを下記のように静的IPに切り替えます
 <br>
+
 ![ip_settings](https://i.gyazo.com/59ef2aa151de1438b39607a5dbce4470.png)
 
 全ノードのインストールが完了したら次のセットアップに進みます
