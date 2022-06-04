@@ -65,7 +65,7 @@ spec:
             - name: PLUGINS
               value: >-
                 https://github.com/games647/CommandForward/releases/download/0.3.1/CommandForward.jar,
-                https://github.com/TCPShield/RealIP/releases/download/2.5.5/TCPShield-2.5.5.jar
+                https://github.com/NamagomiNetwork/namagomi_infra/raw/main/onp-k8s/Namagomi-k8s/manifest/velocity/Plugins/CommandForwardVelocity.jar
 
           image: itzg/bungeecord:java17-2022.1.0
           name: bungeecord
