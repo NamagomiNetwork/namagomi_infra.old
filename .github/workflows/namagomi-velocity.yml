@@ -1,12 +1,14 @@
-name: nanairo-velocity-DockerBuild
+name: namagomi-velocity-DockerBuild
 on:
   push:
+    branches:
+      - main
     paths:
     - 'docker/namagomi-velocity/docker-image/**'
     - '.github/workflows/namagomi-velocity.yml'
 
 jobs:
-  nanairo-velocity-build-and-push:
+  namagomi-velocity-build-and-push:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: namagomi-velocity

@@ -1,0 +1,15 @@
+[Unit]
+Description=Minecraft Server
+After=network-online.target
+
+[Service]
+User=mcserver
+Group=mcserver
+TimeoutStopSec=120
+WorkingDirectory=/home/mc-server/mc
+ExecStart=/bin/sh /home/mc-server/mc/start.sh
+ExecStop=/bin/sh /home/mc-server/mc/stop.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

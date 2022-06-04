@@ -1,21 +1,20 @@
 # Namagomi_infra
 
-生ゴミ鯖のインフラ部分
+生ゴミ鯖のインフラを管理するリポジトリです。
 
 ## ディレクトリ構成
 
-- `nabr_infra`(./nabr_infra/)
-
-    - nabrのおうちのインフラ部分です
-
-- [`proxy`](./proxy/)
-    - Minecraftサーバー用プロキシやOnp環境との接続にcloudflaredがあり、その設定類を管理するディレクトリです
-
+- [`onp-k8s`](./onp-k8s/)
+    - オンプレ環境のk8sを管理するディレクトリ
+    - Secretの管理に気をつけてください
+- [`docker`](./docker/)
+    - DockerImageを管理するディレクトリ
+    - 現在は下記のイメージを管理しています
+        - [Namagomi-Velocity](https://github.com/NamagomiNetwork/namagomi_infra/pkgs/container/namagomi-velocity)
 - [`scripts`](./scripts/)
-    - 自動再起動やサーバー構築を簡単にできる超雑なスクリプト等を管理しています
-
+    - このディレクトリでは、自動構築スクリプトなど雑なスクリプトを管理するディレクトリ
 - [`docs`](./docs/)
-    - スクリプトの解説等に使用します
-
-- [`docker`](./docker/) 
-    - 中継サーバーなどのdockerImageを管理するディレクトリです
+    - このディレクトリでは、スクリプトやdockerImageの解説,使い方等を管理するディレクトリ
+- [`Minecraft_Server`](./Minecraft-Server/)
+    - マイクラ鯖の設定を管理するディレクトリ
+    - configやスクリプトなどを管理しています
