@@ -36,7 +36,7 @@ spec:
               value: https://raw.githubusercontent.com/NamagomiNetwork/namagomi_infra/main/onp-k8s/Namagomi-k8s/manifest/velocity/config/velocity.toml
           volumeMounts:
             - name: server-config-download-volume
-              mountPath: /root/server-config
+              mountPath: /root/server-config-download
           command:
             - "sh"
             - "-c"
@@ -46,7 +46,7 @@ spec:
           image: busybox:1.35.0
           volumeMounts:
             - name: plugin-config-download-volume
-              mountPath: /root/plugin-config
+              mountPath: /root/plugin-config-download
           command:
             - "sh"
             - "-c"

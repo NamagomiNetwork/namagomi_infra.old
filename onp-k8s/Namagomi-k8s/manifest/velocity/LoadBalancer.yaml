@@ -9,4 +9,4 @@ spec:
   selector:
     app: bungeecord
   type: LoadBalancer
-  loadBalancerIP: 192.168.30.2
+  loadBalancerIP: 192.168.30.150
