@@ -1,0 +1,101 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bungeecord
+  name: bungeecord
+  annotations:
+    configmap.reloader.stakater.com/reload: "bungeecord-plugin-configs"
+spec:
+  replicas: 2
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: bungeecord
+  template:
+    metadata:
+      labels:
+        app: bungeecord
+    spec:
+      initContainers:
+        - name: server-icon-download
+          image: busybox:1.35.0
+          env:
+            - name: SERVER_ICON_URL
+              value: https://raw.githubusercontent.com/NamagomiNetwork/icon/main/server-icon.png
+          volumeMounts:
+            - name: server-icon-download-volume
+              mountPath: /root/server-icon-download
+          command:
+            - "sh"
+            - "-c"
+            - 'wget -O /root/server-icon-download/server-icon.png "${SERVER_ICON_URL}"'
+
+        - name: server-config-download
+          image: busybox:1.35.0
+          env:
+            - name: SERVER_CONFIG_URL
+              value: https://raw.githubusercontent.com/NamagomiNetwork/namagomi_infra/main/onp-k8s/Namagomi-k8s/manifest/velocity/config/velocity.toml
+          volumeMounts:
+            - name: server-config-download-volume
+              mountPath: /root/server-config
+          command:
+            - "sh"
+            - "-c"
+            - 'wget -O /root/root/server-config-download/server-icon.png "${SERVER_CONFIG_URL}"'
+
+        - name: plugin-config-download
+          image: busybox:1.35.0
+          volumeMounts:
+            - name: plugin-config-download-volume
+              mountPath: /root/plugin-config
+          command:
+            - "sh"
+            - "-c"
+            - 'wget -O /root/server-icon-download/TCPShield/config.toml https://raw.githubusercontent.com/NamagomiNetwork/namagomi_infra/main/onp-k8s/Namagomi-k8s/manifest/velocity/config/velocity.toml"'
+
+      containers:
+        - resources:
+            requests:
+              memory: 768Mi
+          env:
+            - name: MEMORY
+              value: 768m
+            - name: TYPE
+              value: VELOCITY
+
+            - name: PLUGINS
+              value: >-
+                https://github.com/games647/CommandForward/releases/download/0.3.1/CommandForward.jar,
+                https://github.com/TCPShield/RealIP/releases/download/2.5.5/TCPShield-2.5.5.jar
+
+          image: itzg/bungeecord:java17-2022.1.0
+          name: bungeecord
+          ports:
+            - containerPort: 7000
+              name: bungeecord
+          startupProbe:
+            tcpSocket:
+              port: 7000
+            failureThreshold: 6
+            periodSeconds: 20
+          volumeMounts:
+            - name: server-config-download-volume
+              mountPath: /config/config.toml
+              subPath: config.toml
+
+            - name: server-icon-download-volume
+              mountPath: /config/server-icon.png
+              subPath: server-icon.png
+
+            - name: plugin-config-download-volume
+              mountPath: /config/plugins/TCPShield/config.toml
+              subPath: config.toml
+
+      volumes:
+        - name: server-icon-download-volume
+          emptyDir: {}
+        - name: server-config-download-volume
+          emptyDir: {}  
+        - name: plugin-config-download-volume
+          emptyDir: {}                    
