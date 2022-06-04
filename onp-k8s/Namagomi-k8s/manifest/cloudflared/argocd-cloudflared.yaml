@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: argocd-cloudflared
+  labels:
+    app: argocd-cloudflared
+spec:
+  selector:
+    matchLabels:
+      app: argocd-cloudflared
+  serviceName: "argocd-cloudflared"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: argocd-cloudflared
+    spec:
+      containers:
+      - image: ghcr.io/giganticminecraft/cloudflared-with-auto-dns-route:sha-c420cb5
+        name: argocd-cloudflared
+        env:
+        - name: CLOUDFLARED_HOSTNAME
+          value: namagomi-argocd.nabr2730.com
+        - name: CLOUDFLARED_SERVICE
+          value: https://argocd-server.argocd:443
+        - name: TUNNEL_NAME
+          value: argocd-namagomi
+        volumeMounts:
+        - name: argocd-cloudflared
+          mountPath: /root
+  volumeClaimTemplates:
+  - metadata:
+      name: argocd-cloudflared
+      labels:
+        "snapschedule/hourly": "enabled"
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 2Gi
