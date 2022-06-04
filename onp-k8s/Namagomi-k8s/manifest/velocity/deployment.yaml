@@ -42,15 +42,15 @@ spec:
             - "-c"
             - 'wget -O /root/server-config-download/velocity.toml "${SERVER_CONFIG_URL}"'
 
-        - name: plugin-config-download
+        - name: tcpshield-config-download
           image: busybox:1.35.0
           volumeMounts:
-            - name: plugin-config-download-volume
-              mountPath: /root/plugin-config-download
+            - name: tcpshield-config-download-volume
+              mountPath: /root/TCPShield
           command:
             - "sh"
             - "-c"
-            - 'wget -O /root/server-icon-download/TCPShield/config.toml "https://raw.githubusercontent.com/NamagomiNetwork/namagomi_infra/main/onp-k8s/Namagomi-k8s/manifest/velocity/config/velocity.toml"'
+            - 'wget -O /root/TCPShield/config.toml "https://raw.githubusercontent.com/NamagomiNetwork/namagomi_infra/main/onp-k8s/Namagomi-k8s/manifest/velocity/config/velocity.toml"'
 
       containers:
         - resources:
@@ -86,7 +86,7 @@ spec:
               mountPath: /config/server-icon.png
               subPath: server-icon.png
 
-            - name: plugin-config-download-volume
+            - name: tcpshield-config-download-volume
               mountPath: /config/plugins/TCPShield/config.toml
               subPath: config.toml
 
@@ -95,5 +95,5 @@ spec:
           emptyDir: {}
         - name: server-config-download-volume
           emptyDir: {}  
-        - name: plugin-config-download-volume
+        - name: tcpshield-config-download-volume
           emptyDir: {}                    
