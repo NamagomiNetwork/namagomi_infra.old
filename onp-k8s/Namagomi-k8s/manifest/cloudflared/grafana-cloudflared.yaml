@@ -2,19 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    io.kompose.service: argocd-cloudflared
-  name: argocd-cloudflared
+    io.kompose.service: grafana-cloudflared
+  name: grafana-cloudflared
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: argocd-cloudflared
+      io.kompose.service: grafana-cloudflared
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        io.kompose.service: argocd-cloudflared
+        io.kompose.service: grafana-cloudflared
     spec:
       containers:
         - env:
@@ -25,7 +25,7 @@ spec:
             - name: CLOUDFLARED_SERVICE
               value: http://192.168.30.2
           image: ghcr.io/giganticminecraft/cloudflared-with-auto-dns-route:sha-6455b98
-          name: argocd-cloudflared
+          name: grafana-cloudflared
           resources: {}
           volumeMounts:
             - mountPath: /root
