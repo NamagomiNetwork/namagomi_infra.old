@@ -55,9 +55,8 @@ ping-passthrough = "DISABLED"
 [servers]
 	# Configure your servers here. Each key represents the server's name, and the value
 	# represents the IP address of the server to connect to.
-	lobby = "192.168.8.120:25565"
-    mod = "192.168.6.1:25565"
-	try = ["lobby"]
+    mod = "192.168.2.1:25565"
+	try = ["mod"]
 	# In what order we should try servers when a player logs in or is kicked from a server.
 
 [forced-hosts]
