@@ -2,7 +2,8 @@
 
 echo "このスクリプトは、シングルノードでのk8sを構築する自動スクリプトです。"
 echo "また、ArgoCDなども導入します。"
-read -p "このサーバーのIPアドレスを入力してください(例: 192.168.3.254): " IP
+echo "このサーバーのIPアドレスを入力してください(例: 192.168.3.254): "
+read -p IP
 echo ""
 
     if [ "$EUID" -ne 0 ]
@@ -10,7 +11,7 @@ echo ""
     exit 1
     fi
 
-echo "入力されたIPアドレス: " $IP "で処理を実行します..."
+echo "入力されたIPアドレス: $IP で処理を実行します..."
 echo "10秒後に処理が開始されます...中断は  ctrl + Cを実行してください"
 sleep 10
 
@@ -26,7 +27,7 @@ timedatectl
 
 # swapの無効化
 # kubeletの計算が正しく行われなく可能性があるため
-sudo sed -i "/swap/s/^/#/g" /etc/fstab && cat /etc/fstab | grep swap
+sudo sed -i "/swap/s/^/#/g" /etc/fstab
 
 # iptablesがブリッジを通過するトラフィックを処理できるように
 
@@ -90,12 +91,13 @@ sudo curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master
 sudo mv ./kustomize /usr/bin
 
 # クラスタの構築
-kubeadm init --pod-network-cidr 10.244.0.0/16 --control-plane-endpoint ${IP} --apiserver-advertise-address=${IP}
+kubeadm init --pod-network-cidr 10.244.0.0/16 --control-plane-endpoint="${IP}" --apiserver-advertise-address="${IP}"
 
 # kubectlを叩けるように
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
+# shellcheck disable=SC2046
+mkdir -p "$HOME"/.kube
+cp -i /etc/kubernetes/admin.conf "$HOME"/.kube/config
+chown $(id -u):$(id -g) "$HOME"/.kube/config
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
 # シングルノード運用するためmasterにpodを配置するように
