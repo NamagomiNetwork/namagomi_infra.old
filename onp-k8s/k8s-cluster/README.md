@@ -51,3 +51,8 @@ Next: [VMのセットアップ](./setup-docs/1-VMSetup.md)
 - [kustomize及びHelmのインストール](./setup-docs/5-install-kustomize-helm.md)
 - [クラスターの作成](./setup-docs/6-create-cluster.md)
 - [ArgoCDのインストール](./setup-docs/7-install-argocd.md)
+
+
+## 番外編
+
+- [シングルノードでk8sを導入する](./setup-docs/Single-node.md)
