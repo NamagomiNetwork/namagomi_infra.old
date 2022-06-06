@@ -22,3 +22,8 @@ chmod +x k8s-single-install.sh
 ```
 
 > ./k8s-single-install.sh を実行後IPアドレスを入力してください
+
+## その他
+
+- 結局Workerノードを追加したい！ってなったら？
+    - `kubeadm token create --print-join-command` を実行し、出てきたコマンドを実行してください
