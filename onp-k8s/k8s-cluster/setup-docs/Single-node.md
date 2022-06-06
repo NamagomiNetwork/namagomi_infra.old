@@ -15,7 +15,7 @@
 このコマンドを実行したらあとは自動で構築されます
 
 ```
-sudo su -
+sudo -s
 wget https://raw.githubusercontent.com/NamagomiNetwork/namagomi_infra/main/onp-k8s/k8s-cluster/setup-scripts/k8s-single-install.sh
 chmod +x k8s-single-install.sh
 ./k8s-single-install.sh
