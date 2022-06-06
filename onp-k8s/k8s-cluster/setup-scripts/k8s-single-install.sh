@@ -3,9 +3,8 @@
 echo "このスクリプトは、シングルノードでのk8sを構築する自動スクリプトです。"
 echo "また、ArgoCDなども導入します。"
 echo "このサーバーのIPアドレスを入力してください(例: 192.168.3.254): "
-read -p IP
+read -r IP
 echo ""
-
     if [ "$EUID" -ne 0 ]
     then echo "root権限がありません。sudoをつけるかrootユーザーに切り替えてください"
     exit 1
@@ -94,9 +93,9 @@ sudo mv ./kustomize /usr/bin
 kubeadm init --pod-network-cidr 10.244.0.0/16 --control-plane-endpoint="${IP}" --apiserver-advertise-address="${IP}"
 
 # kubectlを叩けるように
-# shellcheck disable=SC2046
 mkdir -p "$HOME"/.kube
 cp -i /etc/kubernetes/admin.conf "$HOME"/.kube/config
+# shellcheck disable=SC2046
 chown $(id -u):$(id -g) "$HOME"/.kube/config
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
