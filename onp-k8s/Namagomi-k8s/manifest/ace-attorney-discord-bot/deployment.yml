@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: aceattorneydiscordbot
+  name: aceattorneydiscordbot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: aceattorneydiscordbot
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: aceattorneydiscordbot
+    spec:
+      containers:
+        - env:
+            - name: PREFIX
+              value: '!'
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef:
+                    name: ace-attorney-discord-bot-secret
+                    key: DISCORD_TOKEN
+          image: ghcr.io/namagominetwork/ace-attorney-discord-bot:e0eb622
+          name: aceattorneydiscordbot
+          resources: {}
+status: {}
