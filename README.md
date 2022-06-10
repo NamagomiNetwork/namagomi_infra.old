@@ -18,3 +18,8 @@
 - [`Minecraft_Server`](./Minecraft-Server/)
     - マイクラ鯖の設定を管理するディレクトリ
     - configやスクリプトなどを管理しています
+
+## k8sクラスタのSecret管理について
+
+k8s上に配置されるアプリケーションのSecretは、 [ArgoCD Vault Plugin](https://github.com/argoproj-labs/argocd-vault-plugin), [AWS Secret Manager](https://aws.amazon.com/jp/secrets-manager/) で管理しています。Secretが必要となる場合インフラ管理者にお問い合わせください<br>
+また、Secretの注入方法は [README](./onp-k8s/k8s-cluster/docs/Secret.md) を閲覧してください
