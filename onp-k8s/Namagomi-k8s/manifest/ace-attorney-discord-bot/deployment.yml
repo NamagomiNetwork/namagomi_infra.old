@@ -24,6 +24,7 @@ spec:
                 secretKeyRef:
                     name: ace-attorney-discord-bot-secret
                     key: DISCORD_TOKEN
+                    namespace: ace-attorney-discord-bot
           image: ghcr.io/namagominetwork/ace-attorney-discord-bot:e0eb622
           name: aceattorneydiscordbot
           resources: {}
