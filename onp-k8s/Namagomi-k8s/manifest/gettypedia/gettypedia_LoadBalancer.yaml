@@ -7,7 +7,7 @@ spec:
     app: gettypedia
   ports:
   - name: gettypedia-port
-    port: 80
+    port: 8080
     targetPort: 80
     protocol: TCP
   type: LoadBalancer
