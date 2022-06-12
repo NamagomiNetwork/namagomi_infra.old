@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gettypedia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: gettypedia
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: gettypedia
+    spec:
+      containers:
+        - image: mediawiki:latest
+          name: gettypedia
+          ports:
+            - name: gettypedia-port
+              containerPort: 80
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/www/html/images
+              name: gettypedia-hostpath0
+      volumes:
+        - hostPath:
+            path: /data/gettypedia
+          name: gettypedia-hostpath0
+status: {}

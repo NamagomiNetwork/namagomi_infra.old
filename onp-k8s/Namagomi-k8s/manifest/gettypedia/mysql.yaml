@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: mysql
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: mysql
+    spec:
+      containers:
+        - env:
+            - name: MYSQL_DATABASE
+              value: gettypedia
+            - name: MYSQL_USER
+              value: mysqluser
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                    name: gettypedia-secret
+                    key: mysql-pass
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                    name: gettypedia-secret
+                    key: root-pass 
+          image: mysql:5.7.28
+          name: db
+          ports:
+            - name: mysql-port
+              containerPort: 3306
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: mysql-hostpath0
+      restartPolicy: Always
+      volumes:
+        - hostPath:
+            path: /data/mysql/db
+          name: mysql-hostpath0
+status: {}
