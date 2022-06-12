@@ -18,8 +18,7 @@ spec:
         - image: mediawiki:latest
           name: gettypedia
           ports:
-            - name: gettypedia-port
-              containerPort: 80
+            - containerPort: 80
           resources: {}
           volumeMounts:
             - mountPath: /var/www/html/images
