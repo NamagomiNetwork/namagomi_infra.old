@@ -20,7 +20,6 @@ spec:
           ports:
             - name: gettypedia-port
               containerPort: 80
-              protocol: TCP
           resources: {}
           volumeMounts:
             - mountPath: /var/www/html/images
