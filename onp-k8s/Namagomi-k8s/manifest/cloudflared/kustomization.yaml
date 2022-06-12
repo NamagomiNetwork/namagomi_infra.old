@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - argocd-cloudflared.yaml
   - grafana-cloudflared.yaml
+  - gettypedia-cloudflared.yaml
