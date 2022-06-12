@@ -25,12 +25,12 @@ spec:
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                    name: gettypedia-secret
+                    name: gettypediasecret
                     key: mysql-pass
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                    name: gettypedia-secret
+                    name: gettypediasecret
                     key: root-pass 
           image: mysql:5.7.28
           name: db
