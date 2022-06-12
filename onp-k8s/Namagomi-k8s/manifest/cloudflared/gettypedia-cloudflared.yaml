@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: gettypedia-cloudflared
+  name: gettypedia-cloudflared
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: gettypedia-cloudflared
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: gettypedia-cloudflared
+    spec:
+      containers:
+        - env:
+            - name: TUNNEL_NAME
+              value: gettypedia
+            - name: CLOUDFLARED_HOSTNAME
+              value: gettypedia.nabr2730.com
+            - name: CLOUDFLARED_SERVICE
+              value: http://192.168.30.10
+          image: ghcr.io/giganticminecraft/cloudflared-with-auto-dns-route:sha-6455b98
+          name: gettypedia-cloudflared
+          resources: {}
+          volumeMounts:
+            - mountPath: /root
+              name: cloudflared-home
+      volumes:
+        - hostPath:
+            path: /root
+          name: cloudflared-home
+status: {}
