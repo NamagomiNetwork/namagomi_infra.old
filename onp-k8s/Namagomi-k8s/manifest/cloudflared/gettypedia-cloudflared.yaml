@@ -23,7 +23,7 @@ spec:
             - name: CLOUDFLARED_HOSTNAME
               value: gettypedia.nabr2730.com
             - name: CLOUDFLARED_SERVICE
-              value: http://192.168.30.10
+              value: http://192.168.2.1
           image: ghcr.io/giganticminecraft/cloudflared-with-auto-dns-route:sha-6455b98
           name: gettypedia-cloudflared
           resources: {}
