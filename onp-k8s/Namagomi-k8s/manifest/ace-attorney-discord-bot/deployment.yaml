@@ -5,7 +5,7 @@ metadata:
     io.kompose.service: aceattorneydiscordbot
   name: aceattorneydiscordbot
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       io.kompose.service: aceattorneydiscordbot
