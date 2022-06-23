@@ -23,7 +23,7 @@ spec:
             - name: CLOUDFLARED_HOSTNAME
               value: namagomi-argocd.nabr2730.com
             - name: CLOUDFLARED_SERVICE
-              value: http://argocd-server.argocd
+              value: https://argocd-server.argocd
           image: ghcr.io/giganticminecraft/cloudflared-with-auto-dns-route:sha-6455b98
           name: argocd-cloudflared
           resources: {}
