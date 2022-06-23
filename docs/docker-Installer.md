@@ -14,7 +14,7 @@
 上記から順に実行してください
 
 ```
-wget https://raw.githubusercontent.com/NanairoServerNetwork/nanairo_server_infra/main/scripts/setups/docker-setup.sh
+wget https://raw.githubusercontent.com/NamagomiNetwork/namagomi_infra/main/scripts/setups/docker-setup.sh
 sudo bash docker-setup.sh {アーキテクチャ名}
 ```
 このコマンドでdocker並びにdocker-composeをインストールできます
