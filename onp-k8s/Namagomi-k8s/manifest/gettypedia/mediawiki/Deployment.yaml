@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - image: ghcr.io/namagominetwork/mediawiki:2022.6.9-mediawiki1.38.1
-          name: db
+          name: mediawiki
           ports:
             - containerPort: 80
           resources: {}
