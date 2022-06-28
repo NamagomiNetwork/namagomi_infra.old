@@ -5,10 +5,10 @@ metadata:
     app.kubernetes.io/name: mediawiki
   name: mediawiki
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: mediawiki
+  replicas: 1
   template:
     metadata:
       labels:

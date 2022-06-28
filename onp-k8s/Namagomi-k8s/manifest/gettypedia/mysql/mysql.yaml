@@ -5,16 +5,14 @@ metadata:
     app.kubernetes.io/name: mysql
   name: mysql
 spec:
-  replicas: 1
-  strategy:
-    type: Recreate
   selector:
     matchLabels:
-      app: mysql
+      app: mediawiki
+  replicas: 1
   template:
     metadata:
       labels:
-        app: mysql
+        app: mediawiki
     spec:
       containers:
         - env:
