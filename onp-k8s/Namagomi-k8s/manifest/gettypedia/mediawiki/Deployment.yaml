@@ -17,7 +17,7 @@ spec:
         app.kubernetes.io/name:  mediawiki
     spec:
       containers:
-        - image: ghcr.io/namagominetwork/mediawiki:2022.6.8-mediawiki1.38.1
+        - image: ghcr.io/namagominetwork/mediawiki:2022.6.9-mediawiki1.38.1
           name: db
           ports:
             - containerPort: 80
