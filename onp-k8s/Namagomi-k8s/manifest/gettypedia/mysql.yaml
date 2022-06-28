@@ -2,19 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    io.kompose.service: mysql
+    app.kubernetes.io/name: mysql
   name: mysql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: mysql
+      app.kubernetes.io/name: mysql
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        io.kompose.service: mysql
+        app.kubernetes.io/name:  mysql
     spec:
       containers:
         - env:
@@ -35,16 +35,13 @@ spec:
           image: mysql:5.7.28
           name: db
           ports:
-            - name: mysql-port
-              containerPort: 3306
-              protocol: TCP
+            - containerPort: 3306
           resources: {}
           volumeMounts:
             - mountPath: /var/lib/mysql
-              name: mysql-hostpath0
-      restartPolicy: Always
+              name: mysql-pv
       volumes:
-        - hostPath:
-            path: /data/mysql/db
-          name: mysql-hostpath0
+        - name: mysql-pv
+          persistentVolumeClaim:
+            claimName: mysql-pvc
 status: {}
