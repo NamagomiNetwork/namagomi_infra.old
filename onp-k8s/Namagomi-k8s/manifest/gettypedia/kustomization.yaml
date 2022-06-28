@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./Volume/PersistentVolume.yaml
-  - ./Volume/PersistentVolumeClaim.yaml
-  - mysql.yaml
-  - mysql_LoadBalancer.yaml
+  - ./mysql/Volume/PersistentVolume.yaml
+  - ./mysql/Volume/PersistentVolumeClaim.yaml
+  - ./mysql/mysql.yaml
+  - ./mysql/mysql_LoadBalancer.yaml

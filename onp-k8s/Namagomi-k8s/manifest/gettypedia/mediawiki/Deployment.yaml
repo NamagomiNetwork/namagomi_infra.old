@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: mediawiki
+  name: mediawiki
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mediawiki
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name:  mediawiki
+    spec:
+      containers:
+        - image: ghcr.io/namagominetwork/mediawiki:2022.6.8-mediawiki1.38.1
+          name: db
+          ports:
+            - containerPort: 80
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/www.html
+              name: mediawiki-pv
+      volumes:
+        - name: mediawiki-pv
+          persistentVolumeClaim:
+            claimName: mediawiki-pvc
+status: {}
