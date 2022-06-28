@@ -5,3 +5,7 @@ resources:
   - ./mysql/Volume/PersistentVolumeClaim.yaml
   - ./mysql/mysql.yaml
   - ./mysql/mysql_LoadBalancer.yaml
+  - ./mediawiki/Volume/PersistentVolume.yaml
+  - ./mediawiki/Volume/PersistentVolumeClaim.yaml
+  - ./mediawiki/Deployment.yaml
+  - ./mediawiki/Mediawiki_LoadBalancer.yaml
