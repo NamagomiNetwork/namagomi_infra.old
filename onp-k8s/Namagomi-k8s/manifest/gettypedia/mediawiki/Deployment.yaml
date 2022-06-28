@@ -3,18 +3,17 @@ kind: Deployment
 metadata:
   labels:
     app.kubernetes.io/name: mediawiki
+    app: mediawiki  
   name: mediawiki
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: mediawiki
-  replicas: 1
+      app: mediawiki  
   template:
     metadata:
       labels:
         app: mediawiki
-  strategy:
-    type: Recreate
     spec:
       containers:
         - image: ghcr.io/namagominetwork/mediawiki:2022.6.10-mediawiki1.38.1
