@@ -8,13 +8,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: mediawiki
-  strategy:
-    type: Recreate
+      app: mediawiki
   template:
     metadata:
       labels:
-        app.kubernetes.io/name:  mediawiki
+        app: mediawiki
+  strategy:
+    type: Recreate
     spec:
       containers:
         - image: ghcr.io/namagominetwork/mediawiki:2022.6.10-mediawiki1.38.1
