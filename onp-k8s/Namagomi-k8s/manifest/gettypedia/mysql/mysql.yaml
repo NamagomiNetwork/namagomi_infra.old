@@ -32,7 +32,7 @@ spec:
                 secretKeyRef:
                     name: gettypediasecret
                     key: root-pass 
-          image: mysql:5.7.28
+          image: mysql:8.0.29
           name: db
           ports:
             - containerPort: 3306
