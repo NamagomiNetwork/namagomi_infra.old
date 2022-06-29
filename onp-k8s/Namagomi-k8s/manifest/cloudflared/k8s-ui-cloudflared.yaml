@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: kubernetes-dashboard-cloudflared
+  name: kubernetes-dashboard-cloudflared
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: kubernetes-dashboard-cloudflared
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: kubernetes-dashboard-cloudflared
+    spec:
+      containers:
+        - env:
+            - name: TUNNEL_NAME
+              value: k8s-ui-namagomi
+            - name: CLOUDFLARED_HOSTNAME
+              value: k8s-ui.nabr2730.com
+            - name: CLOUDFLARED_SERVICE
+              value: http://kubernetes-dashboard-lb.kubernetes-dashboard.svc.cluster.local:3000
+          image: ghcr.io/namagominetwork/cloudflared-tunnel:2022.6.5-cloudflared22.6.3
+          name: kubernetes-dashboard-cloudflared
+          resources: {}
+          volumeMounts:
+            - mountPath: /root
+              name: cloudflared-pv
+      volumes:
+        - name: cloudflared-pv
+          persistentVolumeClaim:
+            claimName: cloudflared-pvc
+status: {}
