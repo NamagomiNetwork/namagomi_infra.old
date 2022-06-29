@@ -4,7 +4,7 @@ metadata:
   name: mysql-lb
 spec:
   selector:
-    app: mysql
+    app.kubernetes.io/name: mysql
   ports:
   - port: 3306
     targetPort: 3306

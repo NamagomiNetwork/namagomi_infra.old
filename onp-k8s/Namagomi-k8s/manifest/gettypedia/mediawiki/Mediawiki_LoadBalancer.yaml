@@ -4,7 +4,7 @@ metadata:
   name: mediawiki-lb
 spec:
   selector:
-    app: mediawiki
+    app.kubernetes.io/name: mediawiki
   ports:
   - port: 80
     targetPort: 80
