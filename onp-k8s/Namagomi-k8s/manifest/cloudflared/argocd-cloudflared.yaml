@@ -24,14 +24,14 @@ spec:
               value: namagomi-argocd.nabr2730.com
             - name: CLOUDFLARED_SERVICE
               value: http://argocd-server.argocd
-          image: ghcr.io/giganticminecraft/cloudflared-with-auto-dns-route:sha-6455b98
+          image: ghcr.io/namagominetwork/cloudflared-tunnel:2022.6.5-cloudflared22.6.3
           name: argocd-cloudflared
           resources: {}
           volumeMounts:
             - mountPath: /root
-              name: cloudflared-home
+              name: cloudflared-pv
       volumes:
-        - hostPath:
-            path: /root
-          name: cloudflared-home
+        - name: cloudflared-pv
+          persistentVolumeClaim:
+            claimName: cloudflared-pvc
 status: {}
