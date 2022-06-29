@@ -3,6 +3,10 @@
     "config:base"
   ],
   "kubernetes": {
-    "fileMatch": ["raw/.+\\.yaml"]
+    "fileMatch": [
+      "^onp-k8s/Namagomi-k8s/manifest/Minecraft-Server/.+\\.yaml$",
+      "^onp-k8s/Namagomi-k8s/manifest/cloudflared/.+\\.yaml$",
+      "^onp-k8s/Namagomi-k8s/manifest/gettypedia/.+\\.yaml$"
+    ]
   }
 }
