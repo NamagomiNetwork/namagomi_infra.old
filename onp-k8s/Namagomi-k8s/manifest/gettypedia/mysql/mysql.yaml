@@ -2,19 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: mysql
+    app.kubernetes.io/name: mysql
   name: mysql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql
+      app.kubernetes.io/name: mysql
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: mysql
+        app.kubernetes.io/name:  mysql
     spec:
       containers:
         - env:
