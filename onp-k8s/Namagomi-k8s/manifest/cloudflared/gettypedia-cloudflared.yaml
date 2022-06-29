@@ -23,15 +23,15 @@ spec:
             - name: CLOUDFLARED_HOSTNAME
               value: gettypedia.nabr2730.com
             - name: CLOUDFLARED_SERVICE
-              value: http://192.168.2.1
-          image: ghcr.io/giganticminecraft/cloudflared-with-auto-dns-route:sha-6455b98
+              value: http://mediawiki-lb.gettypedia.svc.cluster.local
+          image: ghcr.io/namagominetwork/cloudflared-tunnel:2022.6.5-cloudflared22.6.3
           name: gettypedia-cloudflared
           resources: {}
           volumeMounts:
             - mountPath: /root
-              name: cloudflared-home
+              name: cloudflared-pv
       volumes:
-        - hostPath:
-            path: /root
-          name: cloudflared-home
+        - name: cloudflared-pv
+          persistentVolumeClaim:
+            claimName: cloudflared-pvc
 status: {}
