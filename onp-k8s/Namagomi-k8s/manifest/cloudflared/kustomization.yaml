@@ -4,5 +4,6 @@ resources:
   - argocd-cloudflared.yaml
   - grafana-cloudflared.yaml
   - gettypedia-cloudflared.yaml
+  - k8s-ui-cloudflared.yaml
   - ./Volume/PersistentVolume.yaml
   - ./Volume/PersistentVolumeClaim.yaml
