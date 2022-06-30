@@ -4,6 +4,7 @@ metadata:
   labels:
     k8s-app: kubernetes-dashboard-lb
   name: kubernetes-dashboard-lb
+  namespace: kubernetes-dashboard
 spec:
   ports:
     - port: 443
