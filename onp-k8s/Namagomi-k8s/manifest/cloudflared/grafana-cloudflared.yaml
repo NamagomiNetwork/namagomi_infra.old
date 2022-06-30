@@ -24,7 +24,7 @@ spec:
               value: grafana.nabr2730.com
             - name: CLOUDFLARED_SERVICE
               value: http://grafana.monitoring.svc.cluster.local:3000
-          image: ghcr.io/namagominetwork/cloudflared-tunnel:2022.6.5-cloudflared22.6.3
+          image: ghcr.io/namagominetwork/cloudflared-tunnel:2022.6.6-cloudflared22.6.3
           name: grafana-cloudflared
           resources: {}
           volumeMounts:

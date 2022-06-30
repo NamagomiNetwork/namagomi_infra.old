@@ -24,7 +24,7 @@ spec:
               value: k8s-ui.nabr2730.com
             - name: CLOUDFLARED_SERVICE
               value: https://kubernetes-dashboard-lb.kubernetes-dashboard.svc.cluster.local
-          image: ghcr.io/namagominetwork/cloudflared-tunnel:2022.6.5-cloudflared22.6.3
+          image: ghcr.io/namagominetwork/cloudflared-tunnel:2022.6.6-cloudflared22.6.3
           name: kubernetes-dashboard-cloudflared
           resources: {}
           volumeMounts:
