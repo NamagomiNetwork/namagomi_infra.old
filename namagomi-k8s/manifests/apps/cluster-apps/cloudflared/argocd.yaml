@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: argocd-cloudflared
+  name: argocd-cloudflared
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-cloudflared
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: argocd-cloudflared
+    spec:
+      containers:
+        - env:
+            - name: TUNNEL_NAME
+              value: argocd-namagomi
+            - name: CLOUDFLARED_HOSTNAME
+              value: namagomi-argocd.nabr2730.com
+            - name: CLOUDFLARED_SERVICE
+              value: http://argocd-server.argocd
+          image: ghcr.io/namagominetwork/cloudflared-tunnel:2022.7.1-cloudflared22.7.1
+          name: argocd-cloudflared
+          resources: 
+            limits:
+              memory: "500Mi"
+              cpu: "500m"
+          volumeMounts:
+            - mountPath: /root
+              name: cloudflared-pv
+      volumes:
+        - name: cloudflared-pv
+          persistentVolumeClaim:
+            claimName: cloudflared-pvc
+status: {}

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft-mod-lb
+spec:
+  selector:
+    app: minecraft-mod
+  ports:
+    - port: 25565
+      protocol: TCP
+      targetPort: 25565
+  type: LoadBalancer
+  loadBalancerIP: 192.168.35.10

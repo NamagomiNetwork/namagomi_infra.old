@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: velocity-debug
+  name: velocity-debug
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: velocity-debug
+  template:
+    metadata:
+      labels:
+        app: velocity-debug
+    spec:
+      initContainers:
+        - name: server-icon-download
+          image: busybox:1.35.0
+          env:
+            - name: SERVER_ICON_URL
+              value: https://raw.githubusercontent.com/NamagomiNetwork/namagomi_infra/main/namagomi-k8s/manifests/apps/velocity-debug/data/server-icon.png
+          volumeMounts:
+            - name: server-icon-download-volume
+              mountPath: /root/server-icon-download
+          command:
+            - "sh"
+            - "-c"
+            - 'wget -O /root/server-icon-download/server-icon.png "${SERVER_ICON_URL}"'
+
+        - name: server-config-download
+          image: busybox:1.35.0
+          env:
+            - name: SERVER_CONFIG_URL
+              value: https://raw.githubusercontent.com/NamagomiNetwork/namagomi_infra/main/namagomi-k8s/manifests/apps/velocity-debug/data/config/velocity.toml
+          volumeMounts:
+            - name: server-config-download-volume
+              mountPath: /root/server-config-download
+          command:
+            - "sh"
+            - "-c"
+            - 'wget -O /root/server-config-download/velocity.toml "${SERVER_CONFIG_URL}"'
+            
+      containers:
+        - resources:
+            requests:
+              memory: 500Mi
+            limits:
+              memory: "1000Mi"
+              cpu: "500m"
+          env:
+            - name: MEMORY
+              value: 768m
+            - name: TYPE
+              value: VELOCITY
+            - name: PLUGINS
+              value: >-
+                https://raw.githubusercontent.com/NamagomiNetwork/namagomi_infra/main/namagomi-k8s/manifests/apps/velocity-debug/data/plugins/CommandForwardVelocity.jar
+
+          image: itzg/bungeecord:java17-2022.1.0
+          name: velocity
+          ports:
+          - containerPort: 25565
+            protocol: TCP
+          volumeMounts:
+            - name: server-config-download-volume
+              mountPath: /config/velocity.toml
+              subPath: velocity.toml
+
+            - name: server-icon-download-volume
+              mountPath: /config/server-icon.png
+              subPath: server-icon.png
+
+            - name: tcpshield-config-download-volume
+              mountPath: /config/plugins/TCPShield/config.toml
+              subPath: config.toml
+
+      volumes:
+        - name: server-icon-download-volume
+          emptyDir: {}
+        - name: server-config-download-volume
+          emptyDir: {}  
+        - name: tcpshield-config-download-volume
+          emptyDir: {}                    

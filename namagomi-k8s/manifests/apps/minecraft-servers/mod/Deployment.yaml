@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft-mod
+spec:
+  selector:
+    matchLabels:
+      app: minecraft-mod
+  template:
+    metadata:
+      labels:
+        app: minecraft-mod
+    spec:
+      containers:
+      - name: forge
+        image: itzg/minecraft-server:java8
+        env:
+          - name: "EULA"
+            value: "TRUE"
+          - name: "TYPE"
+            value: "FORGE"
+          - name: "VERSION"
+            value: "1.12.2"
+          - name: "FORGEVERSION"
+            value: "14.23.5.2860"
+          - name: "ONLINE_MODE"
+            value: "FALSE"
+          - name: "MEMORY"
+            value: "24G"
+          - name: "JVM_OPTS"
+            value: "-Dfml.queryResult=confirm"
+        resources:
+          requests:
+            memory: "24G"
+          limits:
+            cpu: "4"
+            memory: "24G"
+        volumeMounts:
+          - mountPath: "/data"
+            name: minecraft-mod-pv
+        ports:
+        - containerPort: 25565
+      volumes:
+        - name: minecraft-mod-pv
+          persistentVolumeClaim:
+            claimName: minecraft-mod-pvc
