@@ -128,16 +128,16 @@ sudo sed -i "/swap/s/^/#/g" /etc/fstab
 sudo modprobe br_netfilter
 sudo modprobe overlay
 
-cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+cat <<1_EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
 br_netfilter
-EOF
+1_EOF
 
-cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+cat <<2_EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-iptables  = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 net.ipv4.ip_forward                 = 1
-EOF
+2_EOF
 
 sudo sysctl --system
 
