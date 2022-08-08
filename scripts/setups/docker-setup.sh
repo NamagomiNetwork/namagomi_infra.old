@@ -3,10 +3,10 @@ set -e
 
 # ==================
 # docker-composeインストールURL
-DOCKER_COMPOSE_AMD64_URL="https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-linux-x86_64"
-DOCKER_COMPOSE_ARM64_URL="https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-linux-aarch64"
-DOCKER_COMPOSE_ARMV7_URL="https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-linux-armv7"
-DOCKER_COMPOSE_ARMV6_URL="https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-linux-armv6"
+DOCKER_COMPOSE_AMD64_URL="https://github.com/docker/compose/releases/download/v2.9.0/docker-compose-linux-x86_64"
+DOCKER_COMPOSE_ARM64_URL="https://github.com/docker/compose/releases/download/v2.9.0/docker-compose-linux-aarch64"
+DOCKER_COMPOSE_ARMV7_URL="https://github.com/docker/compose/releases/download/v2.9.0/docker-compose-linux-armv7"
+DOCKER_COMPOSE_ARMV6_URL="https://github.com/docker/compose/releases/download/v2.9.0/docker-compose-linux-armv6"
 # ==================
 
 # root以外を弾く

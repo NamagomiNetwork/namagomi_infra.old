@@ -286,7 +286,7 @@ kubectl apply -f argocd-rbac-cm.yaml
 kubectl apply -f argocd-cm.yaml
 
 # お掃除
-rm argocd-cm.yaml argocd-rbac-cm.yaml
+rm -f argocd-cm.yaml argocd-rbac-cm.yaml
 
 # つうち
 echo "セットアップが完了しました！"
