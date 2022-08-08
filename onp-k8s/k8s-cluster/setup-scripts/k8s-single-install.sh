@@ -54,11 +54,11 @@ swapoff -a
 
 wget -q --show-progress --https-only --timestamping \
   https://github.com/opencontainers/runc/releases/download/v1.1.2/runc.amd64 \
-  https://github.com/containerd/containerd/releases/download/v1.5.12/containerd-1.5.12-linux-amd64.tar.gz \
+  https://github.com/containerd/containerd/releases/download/v1.6.7/containerd-1.6.7-linux-amd64.tar.gz \
   https://github.com/containernetworking/plugins/releases/download/v1.1.1/cni-plugins-linux-amd64-v1.1.1.tgz
 
 # install containerd
-sudo tar Cxzvf /usr/local containerd-1.5.12-linux-amd64.tar.gz
+sudo tar Cxzvf /usr/local containerd-1.6.7-linux-amd64.tar.gz
 
 wget https://raw.githubusercontent.com/containerd/containerd/main/containerd.service
 sudo mv ./containerd.service /etc/systemd/system/containerd.service
