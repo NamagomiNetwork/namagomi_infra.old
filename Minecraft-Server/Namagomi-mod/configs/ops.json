@@ -1,11 +1,5 @@
 [
     {
-      "uuid": "f2ca8d7f-93e0-49e0-a154-1ece955d41c1",
-      "name": "Yk_0256",
-      "level": 4,
-      "bypassesPlayerLimit": false
-    },
-    {
       "uuid": "e4497781-c5fa-4f58-b148-0accef989ccc",
       "name": "nabr2730",
       "level": 4,
@@ -20,12 +14,6 @@
     {
       "uuid": "16f90909-7020-4b25-a0e9-f29d95345f69",
       "name": "ikazuchizero",
-      "level": 4,
-      "bypassesPlayerLimit": false
-    },
-    {
-      "uuid": "240c6fbb-4ddf-4c7b-9ece-7df9dc254e9e",
-      "name": "towa_7241",
       "level": 4,
       "bypassesPlayerLimit": false
     },
