@@ -1,16 +1,25 @@
 [Unit]
-Description=Minecraft Server
+Description=Minecraft Server - mc-mod01
 After=network-online.target
 
 [Service]
-User=mc-server
-Group=mc-server
+User=mcserver
+Group=mcserver
 TimeoutStopSec=120
-WorkingDirectory=/home/mc-server/mc
-ExecStart=/bin/sh /home/mc-server/mc/start.sh
-ExecStop=/bin/sh /home/mc-server/mc/stop.sh
+WorkingDirectory=/home/mcserver/minecraft/mod
+
+ExecStart=/usr/bin/screen -Dm -S mod01 /home/mcserver/minecraft/mod/start.sh
+
+ExecStop=/usr/bin/screen -S mod01 -X stuff "say =======================================\015"
+ExecStop=/usr/bin/screen -S mod01 -X stuff "say サーバーは15秒後に止まるか再起動します。\015"
+ExecStop=/usr/bin/screen -S mod01 -X stuff "say くらえ！\015"
+ExecStop=/usr/bin/screen -S mod01 -X stuff "say =======================================\015"
+ExecStop=/bin/sleep 15
+ExecStop=/usr/bin/screen -S mod01 -X stuff "save-all\015"
+ExecStop=/usr/bin/screen -S mod01 -X stuff "stop\015"
+ExecStop=/bin/sleep 60
+
 Restart=always
-Type=forking
 
 [Install]
 WantedBy=multi-user.target
